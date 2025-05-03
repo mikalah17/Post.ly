@@ -25,14 +25,14 @@ public class JButton extends JLabel {
     
     //for rounded corners
     protected void paintComponent(Graphics g) { 
-        g.setColor(GUIConstants.blue);
+        g.setColor(GUIConstants.black);
         g.fillRoundRect(0, 0, getWidth()-1, getHeight() -1, radius, radius);
         super.paintComponent(g);
         
     }
    //for rounder border
     protected void paintBorder(Graphics g) {
-        g.setColor(GUIConstants.blue);
+        g.setColor(GUIConstants.black);
         g.drawRoundRect(0, 0, getWidth()-1, getHeight() -1, radius, radius);
     } 
     
