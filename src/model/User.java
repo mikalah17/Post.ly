@@ -7,17 +7,21 @@ public class User {
     private String username;
     private String password;
     private ArrayList<Post> posts;
-	private ArrayList<User> users;
-	private ArrayList<Integer> UsersIDs = new ArrayList<>();
-	
+    private ArrayList<User> users;
+    private ArrayList<Integer> UsersIDs = new ArrayList<>();
+    private boolean isAdmin;
     
     public User() {}
     
-    public int getID() {
+    public User(int id2, String getusername, String getpassword) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getID() {
         return ID; 
     }
     
-    public void setID (int ID) {
+    public void setID(int ID) {
         this.ID = ID; 
     }
     
@@ -41,18 +45,23 @@ public class User {
         return posts;
     }
     
-    public void setPosts (ArrayList<Post> posts) {
+    public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
     }
     
     public void setUsersIDs(ArrayList<Integer> UsersIDs) {
-    	this.UsersIDs = UsersIDs;
+        this.UsersIDs = UsersIDs;
     }
 
-	public ArrayList<Integer> getUsersIDs() {
-		return UsersIDs;
-	}
-    
-    
-    	
+    public ArrayList<Integer> getUsersIDs() {
+        return UsersIDs;
     }
+    
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    
+    public void setAdmin(boolean admin) {
+        this.isAdmin = admin;
+    }
+}
