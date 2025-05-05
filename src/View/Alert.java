@@ -6,14 +6,17 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 
-public class Alert {
+public class Alert{
 
 	public Alert(String content, JFrame parent) {
 		JFrame frame = new JFrame();
 		frame.setSize(430, 170);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
+		ImageIcon icon = new ImageIcon("logo.png");
+		frame.setIconImage(icon.getImage());
 		
 		JPanel panel = new JPanel(new BorderLayout(5, 5));
 		panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));

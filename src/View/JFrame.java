@@ -1,6 +1,8 @@
 package View;
 
-public class JFrame extends javax.swing.JFrame {
+import javax.swing.ImageIcon;
+
+public class JFrame extends javax.swing.JFrame{
     
     public JFrame() {
         super("Post.ly");
@@ -9,6 +11,8 @@ public class JFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
+        ImageIcon icon = new ImageIcon("logo.png");
+		setIconImage(icon.getImage());
     }
     
 }
