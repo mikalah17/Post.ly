@@ -11,6 +11,7 @@ import View.Login;
 import View.admin.panels.*;
 
 public class AdminMainFrame extends JFrame {
+	private static final long serialVersionUID = 1L;
     private final AdminController controller;
     private final Database database; // Store database reference
     
@@ -46,7 +47,8 @@ public class AdminMainFrame extends JFrame {
         add(mainPanel);
     }
     
-    private void handleLogout() {
+    @SuppressWarnings("unused")
+	private void handleLogout() {
         // Properly dispose current frame and show login
         this.dispose();
         SwingUtilities.invokeLater(() -> {

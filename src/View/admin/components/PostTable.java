@@ -6,6 +6,7 @@ import java.util.List;
 import model.admin.AdminPost;
 
 public class PostTable extends JTable {
+	private static final long serialVersionUID = 1L;
     private final PostTableModel model;
     private final TableRowSorter<PostTableModel> sorter;
 
@@ -29,6 +30,7 @@ public class PostTable extends JTable {
     }
 
     private static class PostTableModel extends AdminTableModel<AdminPost> {
+    	private static final long serialVersionUID = 1L;
         public PostTableModel(List<AdminPost> posts) {
             super(posts, new String[]{"ID", "Content", "Author", "Date", "Reports", "Status"});
         }

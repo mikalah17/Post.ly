@@ -1,7 +1,7 @@
 package Controller.admin;
 
 import model.Database;
-import model.User;
+
 import model.admin.AdminStats;
 
 public class AdminController {

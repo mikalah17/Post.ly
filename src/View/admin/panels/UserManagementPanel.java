@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import Controller.admin.UserManagementController;
 import View.admin.components.UserTable;
-import View.Alert;
+
 import View.GUIConstants;
-import View.JButton;
-import java.awt.event.ActionListener;
+
 
 public class UserManagementPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
     public UserManagementPanel(UserManagementController controller) {
         super(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
@@ -30,10 +30,10 @@ public class UserManagementPanel extends JPanel {
         banBtn.setFont(new Font("Segoe UI", Font.BOLD, 14)); // Explicit font setting
         banBtn.setPreferredSize(new Dimension(120, 30)); // Better size control
 
+        // Action handler
         banBtn.addActionListener(e -> {
             int selectedId = userTable.getSelectedUserId();
             if (selectedId != -1) {
-                // Add confirmation dialog
                 int confirm = JOptionPane.showConfirmDialog(
                     this, 
                     "Ban user with ID: " + selectedId + "?", 
@@ -44,8 +44,6 @@ public class UserManagementPanel extends JPanel {
                 if (confirm == JOptionPane.YES_OPTION) {
                     controller.banUser(selectedId);
                     userTable.updateData(controller.getAllUsers());
-                    
-                    // Show feedback
                     JOptionPane.showMessageDialog(this, "User banned successfully");
                 }
             } else {
@@ -53,9 +51,8 @@ public class UserManagementPanel extends JPanel {
             }
         });
 
-        actionPanel.add(banBtn);
+        actionPanel.add(banBtn); 
         
-        actionPanel.add(banBtn);
         add(controlsPanel, BorderLayout.NORTH);
         add(new JScrollPane(userTable), BorderLayout.CENTER);
         add(actionPanel, BorderLayout.SOUTH);

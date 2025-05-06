@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 
 public class JScrollPane extends javax.swing.JScrollPane {
+	private static final long serialVersionUID = 1L;
 
 	public JScrollPane(JComponent component) {
 		super(component);

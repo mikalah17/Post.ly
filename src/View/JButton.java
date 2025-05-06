@@ -8,6 +8,7 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JLabel;
 
 public class JButton extends JLabel {
+	private static final long serialVersionUID = 1L;
     
     private Shape shape; 
     private int radius; 

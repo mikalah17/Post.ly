@@ -8,6 +8,7 @@ import View.GUIConstants;
 import View.JLabel;
 
 public class AdminHeaderPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
     public AdminHeaderPanel(User adminUser, ActionListener logoutAction) {
         super(new BorderLayout());
         setBackground(GUIConstants.white);

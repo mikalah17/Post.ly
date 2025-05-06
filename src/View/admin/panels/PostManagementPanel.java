@@ -10,6 +10,7 @@ import model.admin.AdminPost;
 import View.GUIConstants;
 
 public class PostManagementPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
     private final PostManagementController controller;
     private final PostTable postTable;
     private JTextField searchField;

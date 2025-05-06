@@ -1,15 +1,12 @@
 package Controller.admin;
 
 import model.Database;
-import model.User;
+
 import model.admin.AdminUser;
 import java.util.List;
 
 public class UserManagementController {
-    private final Database database;
-    
     public UserManagementController(Database database) {
-        this.database = database;
     }
     
     public List<AdminUser> getAllUsers() {

@@ -7,7 +7,6 @@ public class User {
     private String username;
     private String password;
     private ArrayList<Post> posts;
-    private ArrayList<User> users;
     private ArrayList<Integer> UsersIDs = new ArrayList<>();
     private boolean isAdmin;
     

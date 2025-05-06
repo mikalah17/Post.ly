@@ -1,15 +1,12 @@
 package Controller.admin;
 
 import model.Database;
-import model.Post;
+
 import model.admin.AdminPost;
 import java.util.List;
 
 public class PostManagementController {
-    private final Database database;
-    
-    public PostManagementController(Database database) {
-        this.database = database;
+	public PostManagementController(Database database) {
     }
     
     public List<AdminPost> getAllPosts() {

@@ -14,7 +14,7 @@ import model.User;
 
 import javax.swing.JLabel;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class SideButton extends JPanel {
 
 	public SideButton(String text, String string, User user, Database database) {

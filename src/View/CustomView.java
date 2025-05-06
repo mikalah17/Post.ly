@@ -14,11 +14,11 @@ import Controller.ReadAllUsers;
 import model.Database;
 import model.User;
 import javax.swing.ImageIcon;
-
+@SuppressWarnings("unused")
 public class CustomView {
 	
 	public CustomView(String view, User user, Database database) {
-		JFrame frame = new JFrame();
+		new JFrame();
 		
 		JPanel panel = new JPanel(); 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -36,7 +36,7 @@ public class CustomView {
 		switch(view) {
 		case "Users":
 			ArrayList<User> users = new ReadAllUsers(database, user).getList();
-			for (User u : users) {
+			for (var u : users) {
 				panel.add(Box.createVerticalStrut(7));
 				
 			}

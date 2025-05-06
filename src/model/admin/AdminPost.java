@@ -2,7 +2,7 @@ package model.admin;
 
 import model.Post;
 import java.time.LocalDateTime;
-
+@SuppressWarnings("unused")
 public class AdminPost extends Post {
     private int reportCount;
     private boolean isFlagged;

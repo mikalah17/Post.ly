@@ -4,6 +4,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public abstract class AdminTableModel<T> extends AbstractTableModel {
+	private static final long serialVersionUID = 1L;
     protected List<T> data;
     protected final String[] columnNames;
 

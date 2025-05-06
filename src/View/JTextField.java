@@ -11,7 +11,7 @@ import java.awt.event.FocusListener;
 import java.awt.geom.RoundRectangle2D;
 
 public class JTextField extends javax.swing.JTextField {
-	
+	private static final long serialVersionUID = 1L;
     
     private Shape shape;
     private String hint;

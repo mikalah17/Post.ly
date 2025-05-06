@@ -6,6 +6,7 @@ import model.admin.AdminStats;
 import View.GUIConstants;
 
 public class StatsPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
     private static final Color CARD_BG = new Color(240, 240, 240);
     
     public StatsPanel(AdminStats stats) {

@@ -6,6 +6,7 @@ import java.util.List;
 import model.admin.AdminUser;
 
 public class UserTable extends JTable {
+	private static final long serialVersionUID = 1L;
     private final UserTableModel model;
     
     public UserTable(List<AdminUser> users) {
@@ -24,6 +25,7 @@ public class UserTable extends JTable {
     }
     
     private static class UserTableModel extends AbstractTableModel {
+    	private static final long serialVersionUID = 1L;
         private final String[] columnNames = {"ID", "Username", "Posts", "Status"};
         private List<AdminUser> users;
         

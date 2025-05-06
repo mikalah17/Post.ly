@@ -20,6 +20,7 @@ import Controller.GenerateTimeline;
 import model.Database;
 import model.User;
 
+@SuppressWarnings("unused")
 public class Home {
 	
 	public Home(User user, Database database) {
