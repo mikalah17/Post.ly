@@ -10,7 +10,16 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import model.Database;
+import model.User;
+
 public class Post extends JPanel {
+	
+	public Post(User user, model.Post post, Database database, javax.swing.JFrame frame) {
+	    // Handle as needed
+	}
+
+	
 	
 	public Post (model.Post post) {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -20,7 +29,7 @@ public class Post extends JPanel {
 		JPanel header = new JPanel(new BorderLayout());
 		header.setBackground(null);
 		
-		JLabel author = new JLabel("a" + post.getUser().getusername(), 20, GUIConstants.post, Font.BOLD);
+		JLabel author = new JLabel("@" + post.getUser().getusername(), 20, GUIConstants.post, Font.BOLD);
 		header.add(author, BorderLayout.WEST);
 		
 		JLabel date = new JLabel(post.getDateToString(), 15, GUIConstants.post, Font.PLAIN);
@@ -48,7 +57,9 @@ public class Post extends JPanel {
 		setMinimumSize(dimension);
 		
 		
+		
 	}
+	
 	
 
 }

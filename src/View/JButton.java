@@ -42,5 +42,10 @@ public class JButton extends JLabel {
     
     return shape.contains(x, y); 
 }
+
+	public void addActionListener(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
 }
     

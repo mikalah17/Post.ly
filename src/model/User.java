@@ -7,13 +7,27 @@ public class User {
     private String username;
     private String password;
     private ArrayList<Post> posts;
-	private ArrayList<User> users;
-	private ArrayList<Integer> UsersIDs = new ArrayList<>();
 	
+	private ArrayList<Integer> UsersIDs = new ArrayList<>();
+	private boolean isAdmin;
+	private ArrayList<User> users = new ArrayList<>();
+
+
+	public boolean isAdmin() {
+	    return isAdmin;
+	}
+
     
-    public User() {}
-    
-    public int getID() {
+    public User(int i, String string, String string2) {}
+  
+
+
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public int getID() {
         return ID; 
     }
     

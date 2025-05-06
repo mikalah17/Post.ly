@@ -14,27 +14,35 @@ import javax.swing.JPanel;
 import Controller.CreateUser;
 import model.Database;
 import model.User;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class Welcome {
     
     public Welcome(Database database) {
         JFrame frame = new JFrame();
         
-        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel();
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(53, 84, 76, 84));
-        panel.add(new JLabel("Welcome", 40, GUIConstants.black, Font.BOLD), BorderLayout.NORTH);
-        
-        JPanel center = new JPanel(new GridLayout(6, 1, 10, 10));
-        center.setBackground(null);
-        center.setBorder(BorderFactory.createEmptyBorder(22, 231, 17, 231));
+        panel.setLayout(null);
+        JLabel label = new JLabel();
+        label.setIcon(new ImageIcon("C:\\Users\\minie\\eclipse-workspace\\postly\\src\\View\\logo.jpg"));
+        label.setText("");
+        label.setBounds(84, 53, 732, 66);
+        panel.add(label);
+       
         JTextField username = new JTextField ("Username");
-        center.add(username);
+        username.setBounds(310, 166, 270, 54);
+        panel.add(username);
         JTextField password = new JTextField ("Password");
-        center.add(password);
+        password.setBounds(310, 230, 270, 54);
+        panel.add(password);
         JTextField confirmPassword = new JTextField ("Confirm Password");
-        center.add(confirmPassword);
+        confirmPassword.setBounds(310, 294, 270, 54);
+        panel.add(confirmPassword);
         JButton createAcc = new JButton("Create Account", 45, 20);
+        createAcc.setBounds(310, 390, 270, 54);
         
         createAcc.addMouseListener(new MouseListener() {
         	@Override
@@ -86,11 +94,11 @@ public class Welcome {
         );	
         	
         
-        center.add(createAcc);
+        panel.add(createAcc);
         
-        panel.add(center, BorderLayout.CENTER);
-        
-        JLabel login = new JLabel ("Already have an account? Login", 20, GUIConstants.black, Font.BOLD);
+        JLabel login = new JLabel ("Already have an account?");
+        login.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        login.setBounds(84, 522, 732, 27);
         login.addMouseListener(new MouseListener() {
         	@Override
 			public void mouseReleased(MouseEvent e) {}
@@ -110,9 +118,14 @@ public class Welcome {
         
         login.setCursor(new Cursor(Cursor.HAND_CURSOR));
         login.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(login, BorderLayout.SOUTH);
+        panel.add(login);
         
         frame.getContentPane().add(panel);
+        
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\minie\\eclipse-workspace\\postly\\src\\View\\bg.jpg"));
+        lblNewLabel.setBounds(0, 0, 900, 625);
+        panel.add(lblNewLabel);
         
         frame.setVisible(true);
         frame.requestFocus();

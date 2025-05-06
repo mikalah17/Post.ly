@@ -22,6 +22,8 @@ public class ReadUser {
 			user.setID(rs.getInt("ID"));
 			user.setusername(rs.getString("Username"));
 			user.setpassword(rs.getString("Password"));
+			
+
 		}
 	} catch (SQLException e) {
 		new Alert(e.getMessage(), null);

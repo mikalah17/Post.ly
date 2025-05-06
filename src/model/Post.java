@@ -51,8 +51,8 @@ public class Post {
 	        return dateTime;
 	    }
 	    
-	    public void setDateTime (LocalDateTime dateTime) {
-	        this.dateTime = dateTime;
+	    public void setDateTime (LocalDateTime string) {
+	        this.dateTime = string;
 	    }
 	    
 	    public String getDateTimeToString() {

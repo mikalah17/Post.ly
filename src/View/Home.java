@@ -26,7 +26,7 @@ public class Home {
 		JFrame frame = new JFrame(); 
 		frame.getContentPane().setLayout(new BorderLayout());
 		
-		
+
 		
 		JPanel sideBar = new JPanel();
 		sideBar.setBackground(GUIConstants.white);
@@ -45,10 +45,9 @@ public class Home {
 		
 		sideBar.add(profile);
 		sideBar.add(Box.createVerticalStrut(3));
-		sideBar.add(new SideButton("Posts", "myposts", user, database));
-		sideBar.add(Box.createVerticalStrut(3));
-		sideBar.add(new SideButton("Users", "allusers", user, database));
-		sideBar.add(Box.createVerticalStrut(3));
+		sideBar.add(new SideButton("Logout", "logout", user, database));
+		sideBar.add(Box.createVerticalStrut(8));
+		
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
