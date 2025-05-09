@@ -13,7 +13,11 @@ import java.awt.geom.RoundRectangle2D;
 public class JTextField extends javax.swing.JTextField {
 	
     
-    private Shape shape;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Shape shape;
     private String hint;
     
     public JTextField(String hint) {

@@ -9,7 +9,11 @@ import javax.swing.JLabel;
 
 public class JButton extends JLabel {
     
-    private Shape shape; 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Shape shape; 
     private int radius; 
     
     public JButton(String text, int radius, int textSize){

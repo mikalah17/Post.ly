@@ -1,18 +1,10 @@
 // AdminDashboard.java (in View package)
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import Controller.AdminController;
 import model.Database;
@@ -23,7 +15,7 @@ public class AdminDashboard {
     private AdminController adminController;
     
     public AdminDashboard(User adminUser, Database database) {
-        this.adminController = new AdminController(database);
+        this.setAdminController(new AdminController(database));
         frame = new JFrame("Admin Dashboard - Post.ly");
         
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -64,4 +56,12 @@ public class AdminDashboard {
         
         return panel;
     }
+
+	public AdminController getAdminController() {
+		return adminController;
+	}
+
+	public void setAdminController(AdminController adminController) {
+		this.adminController = adminController;
+	}
 }
