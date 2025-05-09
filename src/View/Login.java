@@ -13,29 +13,34 @@ import javax.swing.JPanel;
 import Controller.ReadUser;
 import model.Database;
 import model.User;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class Login {
 	
 	public Login(Database database) {
 		JFrame frame = new JFrame();
 		
-		JPanel panel = new JPanel(new BorderLayout());
+		JPanel panel = new JPanel();
 		panel.setBackground(null);
 		panel.setBorder(BorderFactory.createEmptyBorder(115, 0, 182, 0));
+		panel.setLayout(null);
 		
 		
-		JLabel title = new JLabel("Login", 40, GUIConstants.black, Font.BOLD);
+		JLabel title = new JLabel("Login");
+		title.setFont(new Font("Segoe UI", Font.BOLD, 40));
+		title.setBounds(0, 115, 900, 54);
 		title.setHorizontalAlignment(JLabel.CENTER);
-		panel.add(title, BorderLayout.NORTH);
+		panel.add(title);
 		
-		JPanel center = new JPanel(new GridLayout(3, 1, 10, 10));
-		center.setBackground(null);
-		center.setBorder(BorderFactory.createEmptyBorder(34, 315, 17, 315));
 		JTextField username = new JTextField("Username");
-		center.add(username);
+		username.setBounds(315, 196, 270, 58);
+		panel.add(username);
 		JTextField password = new JTextField("Password");
-		center.add(password);
+		password.setBounds(315, 264, 270, 58);
+		panel.add(password);
 		JButton login = new JButton("Login", 45, 20);
+		login.setBounds(315, 348, 270, 58);
 		login.addMouseListener(new MouseListener() {
 	        	@Override
 				public void mouseReleased(MouseEvent e) {}
@@ -65,11 +70,11 @@ public class Login {
 				}
 				}	
 				});
-		center.add(login);
+		panel.add(login);
 		
-		panel.add(center, BorderLayout.CENTER);
-		
-		JLabel createAcc = new JLabel("Don't have an account? Create new one", 20, GUIConstants.black, Font.BOLD);
+		JLabel createAcc = new JLabel("Don't have an account? Create new one");
+		createAcc.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		createAcc.setBounds(0, 416, 900, 27);
 		 createAcc.addMouseListener(new MouseListener() {
 	        	@Override
 				public void mouseReleased(MouseEvent e) {}
@@ -86,9 +91,14 @@ public class Login {
 				});
 		createAcc.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		createAcc.setHorizontalAlignment(JLabel.CENTER);
-		panel.add(createAcc, BorderLayout.SOUTH);
+		panel.add(createAcc);
 		
 		frame.getContentPane().add(panel);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\minie\\eclipse-workspace\\postly\\src\\View\\bg.jpg"));
+		lblNewLabel.setBounds(0, 0, 900, 625);
+		panel.add(lblNewLabel);
 		frame.setVisible(true);
 		frame.requestFocus();
 		
