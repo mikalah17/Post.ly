@@ -13,7 +13,7 @@ public class ReadUser {
 	private User user;
 	
 	public ReadUser(String username, String password, Database database) {
-		String select = "SELECT * FROM `users` WHERE `username` = '"+username+"' AND `password` = '"+password+"';";
+		String select = "SELECT * FROM `users` WHERE `username` = '"+ username +"' AND `password` = '"+ password +"';";
 	try {
 		ResultSet rs = database.getStatement().executeQuery(select);
 		loggedIn = rs.next();

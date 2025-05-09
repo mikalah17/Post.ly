@@ -27,7 +27,7 @@ public class Welcome {
         panel.setBorder(BorderFactory.createEmptyBorder(53, 84, 76, 84));
         panel.setLayout(null);
         JLabel label = new JLabel();
-        label.setIcon(new ImageIcon("C:\\Users\\minie\\eclipse-workspace\\postly\\src\\View\\logo.jpg"));
+        label.setIcon(new ImageIcon("logo.jpg"));
         label.setText("");
         label.setBounds(84, 53, 732, 66);
         panel.add(label);
@@ -123,7 +123,7 @@ public class Welcome {
         frame.getContentPane().add(panel);
         
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\minie\\eclipse-workspace\\postly\\src\\View\\bg.jpg"));
+        lblNewLabel.setIcon(new ImageIcon("bg.jpg"));
         lblNewLabel.setBounds(0, 0, 900, 625);
         panel.add(lblNewLabel);
         
