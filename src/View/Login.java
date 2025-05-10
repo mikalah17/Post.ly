@@ -52,9 +52,6 @@ public class Login {
 				public void mouseEntered(MouseEvent e) {}
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					System.out.println("=== DEBUG: LOGIN ATTEMPT ===");
-				    System.out.println("Username entered: " + username.getText());
-				    System.out.println("Password entered: " + password.getText());
 				    if (username.isEmpty()) {
 				        new Alert("Username cannot be empty", frame);
 				        return;

@@ -42,18 +42,4 @@ public class Database {
     public Connection getConnection() {
         return connection;
     }
-
-    // Optional: Connection tester
-    public static void testConnection() {
-        try {
-            Database db = new Database();
-            if (!db.getConnection().isClosed()) {
-                System.out.println("Connection test successful");
-            }
-        } catch (SQLException e) {
-            System.err.println("Connection test failed");
-            e.printStackTrace();
-        }
-    }
-    
 }
