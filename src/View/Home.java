@@ -40,7 +40,7 @@ public class Home {
 		profile.setMaximumSize(new Dimension(182, 50));
 		profile.setBackground(GUIConstants.white);
 		
-		profile.add(new JLabel("@"+ user.getusername(), 19, GUIConstants.black, Font.BOLD));
+		profile.add(new JLabel("@ "+ user.getusername(), 19, GUIConstants.black, Font.BOLD));
 		
 		sideBar.add(profile);
 		sideBar.add(Box.createVerticalStrut(3));

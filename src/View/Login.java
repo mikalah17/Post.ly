@@ -74,6 +74,7 @@ public class Login {
 				            if (rs.next() && rs.getBoolean("is_admin")) {
 				                new AdminDashboard(user, database);
 				            } else {
+				            	frame.dispose();
 				                new Home(user, database);
 				            }
 				        } catch(SQLException ex) {
@@ -100,6 +101,7 @@ public class Login {
 				public void mouseEntered(MouseEvent e) {}
 				@Override
 				public void mouseClicked(MouseEvent e) 	{
+					frame.dispose(); 
 					new Welcome(database);
 				}
 				});

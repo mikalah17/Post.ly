@@ -81,10 +81,13 @@ public class Welcome {
         		CreateUser create = new CreateUser(u, database);
 				if (!create.isusernameUsed()) {
 					create.create();
+					frame.dispose(); 
 					u = create.getUser();
-					new Alert("Account created succesfully, ID: "+u.getID(), frame);
+					new Alert("Account created succesfully, ID: " + u.getID(), frame);
+					frame.dispose();
+					new Login(database);
 				} else {
-					new Alert("This email has been used before", frame);
+					new Alert("This email/username has been used before", frame);
         		}
         }
         }
@@ -108,8 +111,8 @@ public class Welcome {
 			public void mouseEntered(MouseEvent e) {}
 			@Override
 			public void mouseClicked(MouseEvent e) 	{
-			new Login(database);
 			frame.dispose();
+			new Login(database);
 			}
         });
     
