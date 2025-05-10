@@ -3,7 +3,6 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import Controller.*;
 import model.Database;
 import model.User;
 

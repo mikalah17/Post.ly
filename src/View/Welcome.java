@@ -2,9 +2,12 @@ package View;
 
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -24,11 +27,16 @@ public class Welcome {
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(53, 84, 76, 84));
         panel.setLayout(null);
-        JLabel label = new JLabel();
-        label.setIcon(new ImageIcon("logo.jpg"));
-        label.setText("");
-        label.setBounds(84, 53, 732, 66);
-        panel.add(label);
+        try {
+            Image logoImage = ImageIO.read(getClass().getResource("/View/images/logo.jpg"));
+            JLabel logoLabel = new JLabel(new ImageIcon(logoImage));
+            logoLabel.setBounds(84, 53, 732, 66);
+            panel.add(logoLabel);
+        } catch (IOException e) {
+            System.err.println("Error loading logo: " + e.getMessage());
+            // Fallback to text logo
+            panel.add(new View.JLabel("Post.ly", 24, GUIConstants.blue, Font.BOLD));
+        }
        
         JTextField username = new JTextField ("Username");
         username.setBounds(310, 166, 270, 54);
@@ -123,10 +131,16 @@ public class Welcome {
         
         frame.getContentPane().add(panel);
         
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("bg.jpg"));
-        lblNewLabel.setBounds(0, 0, 900, 625);
-        panel.add(lblNewLabel);
+        try {
+            Image bgImage = ImageIO.read(getClass().getResource("/View/images/bg.jpg"));
+            JLabel bgLabel = new JLabel(new ImageIcon(bgImage));
+            bgLabel.setBounds(0, 0, 900, 625);
+            panel.add(bgLabel, Integer.valueOf(0));
+        } catch (IOException e) {
+            System.err.println("Error loading background image: " + e.getMessage());
+            // Fallback to solid color
+            panel.setBackground(GUIConstants.background);
+        }
         
         frame.setVisible(true);
         frame.requestFocus();
