@@ -2,8 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
+import java.time.format.DateTimeParseException;	
 
 public class Post {
 	
@@ -21,7 +20,7 @@ public class Post {
 	    public Post(String content, User user) {
 	    	this.content = content;
 	    	this.user = user;
-	    	dateTime = LocalDateTime.now();
+	    	this.dateTime = LocalDateTime.now();
 	    }
 	    public int getID() {
 	        return ID;
@@ -61,13 +60,25 @@ public class Post {
 	    }
 	    
 	    public void setDateTimefromString(String dateTime) {
-	        try {
-	            this.dateTime = LocalDateTime.parse(dateTime);
+	    	try {
+	            // Handle both SQL format and ISO format
+	            if (dateTime.contains(" ")) {
+	                // For SQL format: "yyyy-MM-dd HH:mm:ss"
+	                this.dateTime = LocalDateTime.parse(dateTime, 
+	                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	            } else if (dateTime.contains("T")) {
+	                // For ISO format: "yyyy-MM-ddTHH:mm:ss"
+	                this.dateTime = LocalDateTime.parse(dateTime);
+	            } else {
+	                // Fallback to current time if parsing fails
+	                this.dateTime = LocalDateTime.now();
+	            }
 	        } catch (DateTimeParseException e) {
-	           
-	            this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
-	    }
-	    }
+	            System.err.println("Failed to parse date: " + dateTime);
+	            e.printStackTrace();
+	            this.dateTime = LocalDateTime.now(); // Fallback to current time
+	        }
+    	}
 	    public String getDateToString() {
 	    	return dateFormatter.format(dateTime);
 	    }

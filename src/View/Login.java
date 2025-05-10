@@ -1,11 +1,11 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Font; 
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -51,25 +51,37 @@ public class Login {
 				@Override
 				public void mouseEntered(MouseEvent e) {}
 				@Override
-				public void mouseClicked(MouseEvent e) 	{
-				if (username.isEmpty()) {
-					new Alert("Username cannot be empty", frame);
-					return;
+				public void mouseClicked(MouseEvent e) {
+				    if (username.isEmpty()) {
+				        new Alert("Username cannot be empty", frame);
+				        return;
+				    }
+				    if (password.isEmpty()) {
+				        new Alert("Password cannot be empty", frame);
+				        return;
+				    }
+				    
+				    ReadUser read = new ReadUser(username.getText(), password.getText(), database);
+				    if (read.loggedIn()) {
+				        User user = read.getUser();
+				        // Add admin check
+				        String adminCheck = "SELECT is_admin FROM users WHERE username = '" + username.getText() + "'";
+				        try {
+				            ResultSet rs = database.getStatement().executeQuery(adminCheck);
+				            if (rs.next() && rs.getBoolean("is_admin")) {
+				                new AdminDashboard(user, database);
+				            } else {
+				            	frame.dispose();
+				                new Home(user, database);
+				            }
+				        } catch(SQLException ex) {
+				            new Alert(ex.getMessage(), frame);
+				        }
+				    } else {
+				        new Alert("Incorrect username or password", frame);
+				    }
 				}
-				if (password.isEmpty()) {
-					new Alert("Password cannot be empty", frame);
-					return;
-				}
-				
-				ReadUser read = new ReadUser(username.getText(), password.getText(), database);
-				if (read.loggedIn()) {
-					User user = read.getUser();
-					new Home(user, database);
-				} else {
-					new Alert("Incorrect username or password", frame);
-				}
-				}	
-				});
+			});
 		panel.add(login);
 		
 		JLabel createAcc = new JLabel("Don't have an account? Create new one");
@@ -86,6 +98,7 @@ public class Login {
 				public void mouseEntered(MouseEvent e) {}
 				@Override
 				public void mouseClicked(MouseEvent e) 	{
+					frame.dispose(); 
 					new Welcome(database);
 				}
 				});
@@ -102,6 +115,7 @@ public class Login {
 		frame.setVisible(true);
 		frame.requestFocus();
 		
+		
 	}
-
+	
 }

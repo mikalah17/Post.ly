@@ -1,5 +1,6 @@
 package Controller;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Database;
@@ -18,13 +19,15 @@ public class CreateUser {
 	}
 	
 	public void create () {
-		String insert = "INSERT INTO `users`(`username`, `password`) VALUES ('" 
-			    + u.getusername() + "','" + u.getpassword() + "')";
-		try {
-			database.getStatement().execute(insert);
-		} catch (SQLException e) {
-			new Alert(e.getMessage(), null);
-		}
+		String insert = "INSERT INTO users(username, password) VALUES (?, ?)";
+	    try {
+	        PreparedStatement stmt = database.getConnection().prepareStatement(insert);
+	        stmt.setString(1, u.getusername());
+	        stmt.setString(2, u.getpassword()); // Stores plaintext password
+	        stmt.executeUpdate();
+	    } catch (SQLException e) {
+	        new Alert(e.getMessage(), null);
+	    }
 	}
 	public boolean isusernameUsed() {
 		String select = "SELECT * FROM `users` WHERE `username` = '"+u.getusername()+"';";

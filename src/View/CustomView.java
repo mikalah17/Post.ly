@@ -18,7 +18,7 @@ import model.User;
 public class CustomView {
 	
 	public CustomView(String view, User user, Database database) {
-		JFrame frame = new JFrame();
+		new JFrame();
 		
 		JPanel panel = new JPanel(); 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -36,7 +36,7 @@ public class CustomView {
 		switch(view) {
 		case "Users":
 			ArrayList<User> users = new ReadAllUsers(database, user).getList();
-			for (User u : users) {
+			for (@SuppressWarnings("unused") User u : users) {
 				panel.add(Box.createVerticalStrut(7));
 				
 			}

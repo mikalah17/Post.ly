@@ -1,9 +1,7 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -27,7 +25,7 @@ public class Welcome {
         panel.setBorder(BorderFactory.createEmptyBorder(53, 84, 76, 84));
         panel.setLayout(null);
         JLabel label = new JLabel();
-        label.setIcon(new ImageIcon("C:\\Users\\minie\\eclipse-workspace\\postly\\src\\View\\logo.jpg"));
+        label.setIcon(new ImageIcon("logo.jpg"));
         label.setText("");
         label.setBounds(84, 53, 732, 66);
         panel.add(label);
@@ -83,10 +81,13 @@ public class Welcome {
         		CreateUser create = new CreateUser(u, database);
 				if (!create.isusernameUsed()) {
 					create.create();
+					frame.dispose(); 
 					u = create.getUser();
-					new Alert("Account created succesfully, ID: "+u.getID(), frame);
+					new Alert("Account created succesfully, ID: " + u.getID(), frame);
+					frame.dispose();
+					new Login(database);
 				} else {
-					new Alert("This email has been used before", frame);
+					new Alert("This email/username has been used before", frame);
         		}
         }
         }
@@ -110,8 +111,8 @@ public class Welcome {
 			public void mouseEntered(MouseEvent e) {}
 			@Override
 			public void mouseClicked(MouseEvent e) 	{
-			new Login(database);
 			frame.dispose();
+			new Login(database);
 			}
         });
     
@@ -123,7 +124,7 @@ public class Welcome {
         frame.getContentPane().add(panel);
         
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\minie\\eclipse-workspace\\postly\\src\\View\\bg.jpg"));
+        lblNewLabel.setIcon(new ImageIcon("bg.jpg"));
         lblNewLabel.setBounds(0, 0, 900, 625);
         panel.add(lblNewLabel);
         

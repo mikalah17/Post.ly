@@ -52,6 +52,14 @@ public class User {
 	public ArrayList<Integer> getUsersIDs() {
 		return UsersIDs;
 	}
+
+	public ArrayList<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(ArrayList<User> users) {
+		this.users = users;
+	}
     
     
     	
