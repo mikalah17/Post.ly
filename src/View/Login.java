@@ -1,12 +1,15 @@
 package View;
 
 import java.awt.Cursor;
-import java.awt.Font; 
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -115,6 +118,16 @@ public class Login {
 		frame.setVisible(true);
 		frame.requestFocus();
 		
+		try {
+            Image bgImage = ImageIO.read(getClass().getResource("/View/images/bg.jpg"));
+            View.JLabel bgLabel = new View.JLabel("", 0, null, 0); // Empty custom JLabel
+            bgLabel.setIcon(new ImageIcon(bgImage));
+            bgLabel.setBounds(0, 0, 900, 625);
+            panel.add(bgLabel, Integer.valueOf(0));
+        } catch (IOException e) {
+            System.err.println("Error loading background: " + e.getMessage());
+            panel.setBackground(GUIConstants.background);
+        }
 		
 	}
 	

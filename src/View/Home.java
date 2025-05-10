@@ -48,6 +48,8 @@ public class Home {
 		sideBar.add(Box.createVerticalStrut(3));
 		sideBar.add(new SideButton("Users", "allusers", user, database));
 		sideBar.add(Box.createVerticalStrut(3));
+		sideBar.add(Box.createVerticalStrut(300)); // Add some space
+		sideBar.add(new SideButton("Logout", "logout", user, database));
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
