@@ -292,7 +292,7 @@ public class AdminDashboard {
             public void mouseClicked(MouseEvent e) {
                 moderatePost(post, "approve");
             }
-        });	
+        });    
         
         View.JButton deleteBtn = new View.JButton("Delete", 30, 14);
         deleteBtn.addMouseListener(new MouseAdapter() {
