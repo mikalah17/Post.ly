@@ -2,17 +2,15 @@ package View;
 
 import java.awt.BorderLayout;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.*;
 
 import Controller.CreatePost;
 import Controller.GenerateTimeline;
@@ -40,7 +38,7 @@ public class Home {
 		profile.setMaximumSize(new Dimension(182, 50));
 		profile.setBackground(GUIConstants.white);
 		
-		profile.add(new JLabel("@ "+ user.getusername(), 19, GUIConstants.black, Font.BOLD));
+		profile.add(new javax.swing.JLabel("@" + user.getusername()));
 		
 		sideBar.add(profile);
 		sideBar.add(Box.createVerticalStrut(3));

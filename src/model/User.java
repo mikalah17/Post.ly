@@ -9,8 +9,16 @@ public class User {
     private ArrayList<Post> posts;
 	private ArrayList<User> users;
 	private ArrayList<Integer> UsersIDs = new ArrayList<>();
-	
+    private boolean isActive = true; // Add this field
     
+    // Add these methods:
+    public boolean isActive() {
+        return this.isActive;
+    }
+
+    public void setActive(boolean active) {
+        this.isActive = active;
+    }
     public User() {}
     
     public int getID() {

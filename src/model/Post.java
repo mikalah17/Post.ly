@@ -13,6 +13,16 @@ public class Post {
 	    public LocalDateTime dateTime;
 	    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyy");
+	    private String flagReason;
+	    
+	    
+	    public String getFlagReason() {
+	        return flagReason;
+	    }
+
+	    public void setFlagReason(String reason) {
+	        this.flagReason = reason;
+	    }
 	    
 	    public Post() {}
 	    
@@ -82,6 +92,8 @@ public class Post {
 	    public String getDateToString() {
 	    	return dateFormatter.format(dateTime);
 	    }
+	    
+	    
 	}
 
 
