@@ -75,21 +75,20 @@ public class Login {
 		    	Arrays.fill(passwordChars, '\0'); // Clear immediately after use
 		        // ===== NEW CODE END =====
 		        
-		        if (username.isEmpty()) {
+		    	if (username.getText().trim().isEmpty()) {
 		            new Alert("Username cannot be empty", frame);
-		            // ===== NEW CODE START =====
-		            Arrays.fill(passwordChars, '\0'); // Clear password
+		            // ===== NEW CODE START ===== // Clear password
 		            // ===== NEW CODE END =====
 		            return;
 		        }
 		        // ===== MODIFIED CODE START =====
 		        if (passwordChars.length == 0) {  // Changed from password.isEmpty()
 		            new Alert("Password cannot be empty", frame);
-		            Arrays.fill(passwordChars, '\0'); // Clear password
+ // Clear password
 		            return;
 		        }
 		        // ===== MODIFIED CODE END =====
-		        
+		        Arrays.fill(passwordChars, '\0');
 		        if (read.loggedIn()) {
 		            User user = read.getUser();
 		            // Add admin check
@@ -109,6 +108,7 @@ public class Login {
 		            new Alert("Incorrect username or password", frame);
 		        }
 		    }
+		    
 		});
 		panel.add(login);
 		

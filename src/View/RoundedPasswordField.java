@@ -10,7 +10,11 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class RoundedPasswordField extends JPasswordField {
-    private Shape shape;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Shape shape;
     private int radius = 15;
     private Timer maskTimer;
     private final int showDuration = 1000; // 1 second visibility

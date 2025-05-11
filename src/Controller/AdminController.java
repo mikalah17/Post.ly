@@ -51,13 +51,23 @@ public class AdminController {
 		System.out.println("Logged out successfully.");
     }
     // Secure user listing with pagination
+    public boolean flagPost(int postId, String reason, int reporterId) throws SQLException {
+        String query = "UPDATE postlets SET is_flagged = TRUE, flagged_reason = ?, flagged_by = ? WHERE id = ?";
+        try (PreparedStatement stmt = database.getConnection().prepareStatement(query)) {
+            stmt.setString(1, reason);
+            stmt.setInt(2, reporterId);
+            stmt.setInt(3, postId);
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
     public ArrayList<Post> getFlaggedPosts() throws SQLException {
         ArrayList<Post> posts = new ArrayList<>();
-        String query = "SELECT p.*, u.username \r\n"
-        		+ "FROM postlets p \r\n"
-        		+ "JOIN users u ON p.user = u.id \r\n"
-        		+ "WHERE p.is_flagged = 1";
-
+        String query = "SELECT p.*, u.username " +
+                       "FROM postlets p " +
+                       "JOIN users u ON p.user = u.id " +
+                       "WHERE p.is_flagged = TRUE";
+        
         try (PreparedStatement stmt = database.getConnection().prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -66,17 +76,18 @@ public class AdminController {
                 post.setContent(rs.getString("content"));
                 post.setFlagged(true);
                 post.setFlagReason(rs.getString("flagged_reason"));
-
+                
                 User author = new User();
-                author.setID(rs.getInt("user_id"));
+                author.setID(rs.getInt("user"));
                 author.setusername(rs.getString("username"));
                 post.setUser(author);
-
+                
                 posts.add(post);
             }
         }
         return posts;
     }
+
 
     // Secure status toggling
     public boolean toggleUserStatus(int userId) throws SQLException {
@@ -106,17 +117,6 @@ public class AdminController {
         try (PreparedStatement stmt = database.getConnection().prepareStatement(query)) {
             ResultSet rs = stmt.executeQuery();
             return rs.next() ? rs.getInt(1) : 0;
-        }
-    }
-
-    // Flag a post
-    public boolean flagPost(int postId, String reason, int reporterId) throws SQLException {
-        String query = "UPDATE postlets SET is_flagged = TRUE, flagged_reason = ?, flagged_by = ? WHERE id = ?";
-        try (PreparedStatement stmt = database.getConnection().prepareStatement(query)) {
-            stmt.setString(1, reason);
-            stmt.setInt(2, reporterId);
-            stmt.setInt(3, postId);
-            return stmt.executeUpdate() > 0; // Return true if post was successfully flagged
         }
     }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import Controller.AdminController;
 import Controller.CreatePost;
 import Controller.GenerateTimeline;
 import model.Database;
@@ -16,6 +17,8 @@ import model.User;
 public class Home {
 	
 	public Home(User user, Database database) {
+		ArrayList<model.Post> posts = new GenerateTimeline(user, database).getPosts();
+		AdminController adminController = new AdminController(database);
 		JFrame frame = new JFrame(); 
 		frame.getContentPane().setLayout(new BorderLayout());
 		
@@ -111,12 +114,14 @@ public class Home {
 		panel.add(header);
 		
 		
-		
-		ArrayList<model.Post> posts = new GenerateTimeline(user, database).getPosts();
-		
-		for (int i=0;i<posts.size();i++) {
-			panel.add(Box.createVerticalStrut(7));
-			panel.add(new Post(posts.get(i)));
+		for (int i = 0; i < posts.size(); i++) {
+		    panel.add(Box.createVerticalStrut(7));
+		    panel.add(new Post(
+		        posts.get(i),    // The post model
+		        frame,           // Parent JFrame
+		        user,            // Current user
+		        adminController  // Admin controller for flagging
+		    ));
 		}
 		
 		frame.getContentPane().add(new JScrollPane(panel), BorderLayout.CENTER);

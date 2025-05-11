@@ -8,7 +8,11 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 
 public class FlagPostDialog extends JDialog {
-    private JTextArea reasonField;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextArea reasonField;
     private boolean confirmed = false;
     
     public FlagPostDialog(JFrame parent, int postId) {
@@ -24,21 +28,18 @@ public class FlagPostDialog extends JDialog {
         reasonField.setWrapStyleWord(true);
         
         JButton flagButton = new JButton("Flag Post");
-        flagButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
+        flagButton.addActionListener(e -> {
+            if (!reasonField.getText().trim().isEmpty()) {
                 confirmed = true;
                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Please enter a reason", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         
         JButton cancelButton = new JButton("Cancel");
-        cancelButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                dispose();
-            }
-        });
+        cancelButton.addActionListener(e -> dispose());
         
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.add(cancelButton);
@@ -51,11 +52,11 @@ public class FlagPostDialog extends JDialog {
         add(panel);
     }
     
-    public boolean isConfirmed() {
-        return confirmed;
-    }
-    
     public String getReason() {
         return reasonField.getText().trim();
+    }
+
+    public boolean isConfirmed() {
+        return confirmed && !getReason().isEmpty();
     }
 }

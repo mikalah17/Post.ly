@@ -95,7 +95,7 @@ public class Welcome {
 		        }   
 		        
 		        // Check if password is empty
-		        if (passwordChars.length == 0 || new String(passwordChars).equals("Password")) {
+		        if (passwordChars.length == 0 ) {
 		            new Alert("Password cannot be empty", frame);
 		            Arrays.fill(passwordChars, '\0');
 		            Arrays.fill(confirmChars, '\0');
