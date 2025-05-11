@@ -69,8 +69,10 @@ public class Login {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        // ===== NEW CODE START =====
-		        char[] passwordChars = password.getPassword();
-		        String passwordText = new String(passwordChars);
+		    	// In your login button's mouseClicked():
+		    	char[] passwordChars = password.getPassword();
+		    	ReadUser read = new ReadUser(username.getText(), passwordChars, database);
+		    	Arrays.fill(passwordChars, '\0'); // Clear immediately after use
 		        // ===== NEW CODE END =====
 		        
 		        if (username.isEmpty()) {
@@ -86,11 +88,6 @@ public class Login {
 		            Arrays.fill(passwordChars, '\0'); // Clear password
 		            return;
 		        }
-		        // ===== MODIFIED CODE END =====
-		        
-		        // ===== MODIFIED CODE START =====
-		        ReadUser read = new ReadUser(username.getText(), passwordText, database);
-		        Arrays.fill(passwordChars, '\0'); // Clear password immediately after use
 		        // ===== MODIFIED CODE END =====
 		        
 		        if (read.loggedIn()) {
