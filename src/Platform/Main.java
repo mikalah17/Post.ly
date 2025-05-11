@@ -1,12 +1,12 @@
 package Platform;
 
-import View.Welcome;
+import View.Login;
 import model.Database;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		new Welcome(new Database());
+		new Login(new Database());
 	}
 
 }

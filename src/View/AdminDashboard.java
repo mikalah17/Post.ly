@@ -6,12 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.Timer;
-
 import Controller.AdminController;
 import model.Database;
-import model.Post;
 import model.User;
 
 public class AdminDashboard {
@@ -177,7 +173,8 @@ public class AdminDashboard {
                 try {
                     if (adminController.toggleUserStatus(user.getID())) {
                         refreshUserList();
-                        new Alert("User status updated", frame);
+                        String status = user.isActive() ? "deactivated" : "activated";
+                        new Alert("User " + status + " successfully", frame);
                     }
                 } catch (SQLException ex) {
                     new Alert("Update failed: " + ex.getMessage(), frame);

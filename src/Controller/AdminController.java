@@ -3,7 +3,6 @@ package Controller;
 import java.sql.*;
 import java.util.ArrayList;
 import model.*;
-import View.Alert;
 
 public class AdminController {
     private final Database database;
@@ -15,7 +14,7 @@ public class AdminController {
     // Secure user listing with pagination
     public ArrayList<User> getAllUsers(int limit, int offset) throws SQLException {
         ArrayList<User> users = new ArrayList<>();
-        String query = "SELECT id, username, is_admin, is_active FROM users LIMIT ? OFFSET ?";
+        String query = "SELECT id, username, is_admin, is_active FROM users WHERE is_admin = FALSE LIMIT ? OFFSET ?";
         
         try (PreparedStatement stmt = database.getConnection().prepareStatement(query)) {
             stmt.setInt(1, limit);
@@ -23,7 +22,7 @@ public class AdminController {
             
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                User user = rs.getBoolean("is_admin") ? new Admin() : new User();
+                User user = new User();
                 user.setID(rs.getInt("id"));
                 user.setusername(rs.getString("username"));
                 user.setActive(rs.getBoolean("is_active"));
@@ -35,11 +34,24 @@ public class AdminController {
 
     // Secure status toggling
     public boolean toggleUserStatus(int userId) throws SQLException {
-        String query = "UPDATE users SET is_active = NOT is_active WHERE id = ?";
-        try (PreparedStatement stmt = database.getConnection().prepareStatement(query)) {
-            stmt.setInt(1, userId);
-            return stmt.executeUpdate() > 0;
+    	String checkQuery = "SELECT is_active FROM users WHERE id = ?";
+        try (PreparedStatement checkStmt = database.getConnection().prepareStatement(checkQuery)) {
+            checkStmt.setInt(1, userId);
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next()) {
+                boolean currentStatus = rs.getBoolean("is_active");
+                
+                // Toggle the status
+                String updateQuery = "UPDATE users SET is_active = ? WHERE id = ?";
+                try (PreparedStatement updateStmt = database.getConnection().prepareStatement(updateQuery)) {
+                    updateStmt.setBoolean(1, !currentStatus);
+                    updateStmt.setInt(2, userId);
+                    int affectedRows = updateStmt.executeUpdate();
+                    return affectedRows > 0;
+                }
+            }
         }
+        return false;
     }
 
     // Flagged posts with reasons

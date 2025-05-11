@@ -6,10 +6,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
 import javax.swing.*;
 
 import Controller.CreatePost;
@@ -23,8 +19,7 @@ public class Home {
 		JFrame frame = new JFrame(); 
 		frame.getContentPane().setLayout(new BorderLayout());
 		
-		
-		
+				
 		JPanel sideBar = new JPanel();
 		sideBar.setBackground(GUIConstants.white);
 		Dimension sideBarDim = new Dimension(182, 1000);
