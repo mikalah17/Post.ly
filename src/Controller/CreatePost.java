@@ -15,9 +15,21 @@ public class CreatePost {
     }
     
     public boolean posted() {
+        // Ensure the database connection is open before proceeding
+        try {
+            if (database.getConnection() == null || database.getConnection().isClosed()) {
+                // Re-establish the connection if it was closed
+                System.out.println("Re-establishing database connection...");
+                database.checkAndReestablishConnection(); // Call the method to re-establish the connection
+            }
+        } catch (SQLException e) {
+            new Alert("Error with the database connection: " + e.getMessage(), null);
+            return false;
+        }
+        
         String insert = "INSERT INTO postlets(content, user, created_at) VALUES (?, ?, ?)";
         
-        try (Connection connection = database.getConnection();
+        try (Connection connection = database.getConnection(); 
              PreparedStatement stmt = connection.prepareStatement(insert)) {
             
             // Set parameters

@@ -6,15 +6,16 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class RoundedPasswordField extends JPasswordField {
-
-	private static final long serialVersionUID = 1L;
-	private Shape shape;
+    private Shape shape;
     private int radius = 15;
     private Timer maskTimer;
     private final int showDuration = 1000; // 1 second visibility
-    private StringBuilder visiblePassword = new StringBuilder();
+    private StringBuilder realPassword = new StringBuilder();
+    private boolean selfUpdating = false;
 
     public RoundedPasswordField(String hint) {
         super(hint);
@@ -26,50 +27,53 @@ public class RoundedPasswordField extends JPasswordField {
 
         // Timer to mask the last character
         maskTimer = new Timer(showDuration, e -> {
-            if (visiblePassword.length() > 0) {
-                // Mask the last character
-                visiblePassword.setCharAt(visiblePassword.length()-1, '•');
+            if (realPassword.length() > 0) {
                 setEchoChar('•');
-                setText(new String(visiblePassword));
+                updateDisplay(false);
             }
         });
         maskTimer.setRepeats(false);
 
-        // Key listener for character input
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                maskTimer.stop();
+        // Document listener to handle text changes
+        getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) {
+                if (selfUpdating) return;
                 
-                // Handle backspace
-                if (e.getKeyChar() == '\b') {
-                    if (visiblePassword.length() > 0) {
-                        visiblePassword.deleteCharAt(visiblePassword.length()-1);
+                try {
+                    String newText = getText();
+                    if (newText.length() > realPassword.length()) {
+                        // Character was added
+                        char newChar = newText.charAt(newText.length()-1);
+                        realPassword.append(newChar);
+                        
+                        selfUpdating = true;
+                        setEchoChar((char)0); // Show last character
+                        updateDisplay(true);
+                        maskTimer.restart();
+                        selfUpdating = false;
                     }
-                    setEchoChar('•');
-                    setText(new String(visiblePassword));
-                    return;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-                
-                // Add new character temporarily visible
-                visiblePassword.append(e.getKeyChar());
-                
-                // Show all characters masked except last one
-                char[] displayChars = new char[visiblePassword.length()];
-                Arrays.fill(displayChars, '•');
-                displayChars[displayChars.length-1] = e.getKeyChar();
-                setEchoChar((char)0); // Show actual character temporarily
-                setText(new String(displayChars));
-                
-                maskTimer.start();
             }
+
+            public void removeUpdate(DocumentEvent e) {
+                if (selfUpdating) return;
+                
+                if (realPassword.length() > 0) {
+                    realPassword.deleteCharAt(realPassword.length()-1);
+                    updateDisplay(false);
+                }
+            }
+
+            public void changedUpdate(DocumentEvent e) {}
         });
 
         // Handle focus changes
         addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (visiblePassword.length() == 0) {
+                if (realPassword.length() == 0) {
                     setText("");
                     setForeground(GUIConstants.black);
                 }
@@ -77,12 +81,31 @@ public class RoundedPasswordField extends JPasswordField {
             
             @Override
             public void focusLost(FocusEvent e) {
-                if (visiblePassword.length() == 0) {
+                if (realPassword.length() == 0) {
                     setText(hint);
                     setForeground(GUIConstants.textAreaHint);
                 }
                 setEchoChar('•');
             }
+        });
+    }
+
+    private void updateDisplay(boolean showLastChar) {
+        if (selfUpdating) return;
+        
+        selfUpdating = true;
+        char[] display = new char[realPassword.length()];
+        Arrays.fill(display, '•');
+        
+        if (showLastChar && realPassword.length() > 0) {
+            // Show last character temporarily
+            display[display.length-1] = realPassword.charAt(realPassword.length()-1);
+        }
+        
+        // Safe text update
+        SwingUtilities.invokeLater(() -> {
+            setText(new String(display));
+            selfUpdating = false;
         });
     }
 
@@ -115,17 +138,10 @@ public class RoundedPasswordField extends JPasswordField {
 
     @Override
     public char[] getPassword() {
-        // Return actual password characters (without the bullets)
-        StringBuilder realPassword = new StringBuilder();
-        for (int i = 0; i < visiblePassword.length(); i++) {
-            if (visiblePassword.charAt(i) != '•') {
-                realPassword.append(visiblePassword.charAt(i));
-            }
-        }
         return realPassword.toString().toCharArray();
     }
 
     public boolean isEmpty() {
-        return visiblePassword.length() == 0;
+        return realPassword.length() == 0;
     }
 }

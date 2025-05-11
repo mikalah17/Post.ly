@@ -94,9 +94,11 @@ public class Home {
 				return;
 			}
 				model.Post post = new model.Post(postIn.getText(), user);
+				
 				if (new CreatePost(post, database).posted()) {
 					new Alert("Posted Succesfully", frame);
 					postIn.setText("");
+					
 				}
 			}
 			});
@@ -107,6 +109,7 @@ public class Home {
 		header.add(south, BorderLayout.SOUTH);
 		
 		panel.add(header);
+		
 		
 		
 		ArrayList<model.Post> posts = new GenerateTimeline(user, database).getPosts();
@@ -123,5 +126,6 @@ public class Home {
 		frame.setVisible(true);
 		frame.requestFocus();
 		
-}
+	}
+	
 }

@@ -14,15 +14,35 @@ public class Post {
 	    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyy");
 	    private String flagReason;
+	    private boolean isFlagged;
+	    private int flaggedBy;
+
 	    
 	    
+	    public boolean isFlagged() {
+	        return isFlagged;
+	    }
+
+	    public void setFlagged(boolean flagged) {
+	        this.isFlagged = flagged;
+	    }
+
 	    public String getFlagReason() {
 	        return flagReason;
 	    }
 
-	    public void setFlagReason(String reason) {
-	        this.flagReason = reason;
+	    public void setFlagReason(String flagReason) {
+	        this.flagReason = flagReason;
 	    }
+
+	    public int getFlaggedBy() {
+	        return flaggedBy;
+	    }
+
+	    public void setFlaggedBy(int flaggedBy) {
+	        this.flaggedBy = flaggedBy;
+	    }
+	    
 	    
 	    public Post() {}
 	    
