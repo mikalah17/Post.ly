@@ -32,16 +32,24 @@ public class Home {
 		sideBar.setMaximumSize(sideBarDim);
 		sideBar.setMinimumSize(sideBarDim);
 		sideBar.setLayout(new BoxLayout(sideBar, BoxLayout.Y_AXIS));
-		sideBar.add(Box.createVerticalStrut(10));
+		sideBar.add(Box.createVerticalStrut(20));
 		
 		JPanel profile = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 		profile.setMaximumSize(new Dimension(182, 50));
 		profile.setBackground(GUIConstants.white);
 		
-		profile.add(new javax.swing.JLabel("@" + user.getusername()));
+		profile.add(new javax.swing.JLabel("@" + user.getusername()) {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			{
+		        setFont(new Font("Segoe UI", Font.BOLD, 22)); // Change the font size here
+		    }
+		});
 		
 		sideBar.add(profile);
-		sideBar.add(Box.createVerticalStrut(3));
 		sideBar.add(new SideButton("Posts", "myposts", user, database));
 		sideBar.add(Box.createVerticalStrut(3));
 		sideBar.add(new SideButton("Users", "allusers", user, database));

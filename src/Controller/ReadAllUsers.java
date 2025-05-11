@@ -21,7 +21,7 @@ public class ReadAllUsers {
 				User u = new User();
 				u.setID(rs.getInt("ID"));
 				u.setusername(rs.getString("Username"));
-				if (u.getID()!=user.getID()) users.add(user);
+				if (u.getID() != user.getID()) users.add(u);
 				
 			}
 		} catch(SQLException e) {

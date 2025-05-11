@@ -20,7 +20,7 @@ public class Post extends JPanel {
 		JPanel header = new JPanel(new BorderLayout());
 		header.setBackground(null);
 		
-		JLabel author = new JLabel("a" + post.getUser().getusername(), 20, GUIConstants.post, Font.BOLD);
+		JLabel author = new JLabel("@" + post.getUser().getusername(), 20, GUIConstants.post, Font.BOLD);
 		header.add(author, BorderLayout.WEST);
 		
 		JLabel date = new JLabel(post.getDateToString(), 15, GUIConstants.post, Font.PLAIN);
